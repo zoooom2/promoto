@@ -3,9 +3,10 @@ import Growth from '@/pages/home/growth/growth';
 import Marketing from '@/pages/home/marketing/Marketing';
 import Testimonials from '@/pages/home/testimonials/Testimonials';
 import Pricing from '@/pages/home/pricing/pricing';
-import Brandticker from '@/pages/home/brandTicker/Brandticker';
-import FAQ from '@/pages/home/FAQ/FAQ';
-import CTA from '@/pages/home/CTA/CTA';
+import FAQ from '@/components/global/FAQ/FAQ';
+import CTA from '@/components/global/CTA/CTA';
+import Brandticker from '@/components/global/brandTicker/Brandticker';
+import { homeFAQArray } from '@/lib/constants';
 
 export default function Home() {
 	return (
@@ -19,7 +20,7 @@ export default function Home() {
 			<Testimonials />
 			<Pricing />
 			<Brandticker />
-			<FAQ />
+			<FAQ arr={homeFAQArray} />
 			<CTA />
 		</main>
 	);

@@ -1,21 +1,97 @@
-import { hostGrotesk } from '@/app/fonts';
+'use client';
 
-import NavButton from './navbutton';
+import { MotionLink } from '../customMotionUi/comp';
+import { Button } from '../ui/button';
+import MenuButton from './menubtn';
+import { navLinks } from '@/lib/constants';
+import { useEffect, useState } from 'react';
+import Sidebar from './sidebar';
 
 const Navbar = () => {
-	return (
-		<header className='flex flex-col w-full h-min items-center px-4 bg-[#f8f1e1] max-w-[1200px] overflow-visible content-center flex-nowrap gap-[60px] absolute rounded-2xl '>
-			<div className='w-full h-min flex justify-between items-center py-5 overflow-visible content-center flex-nowrap'>
-				<div className='w-full h-min flex justify-between items-center overflow-visible content-center flex-nowrap gap-2.5'>
-					<div
-						className={`w-auto h-auto whitespace-pre font-medium ${hostGrotesk.className} text-[#001b10] text-[28px] tracking-[-0.04em] leading-[90%] `}
-					>
-						Promoto©
-					</div>
+	const [scrolled, setScrolled] = useState(false);
+	const [isOpen, setIsOpen] = useState(false);
 
-					<NavButton />
+	const closeSideBar = () => {
+		setIsOpen(false);
+	};
+
+	const linkGroup = navLinks.map((link, index) => (
+		<MotionLink
+			key={index}
+			href={link.link}
+			className='flex italic items-center px0.5 content-center gap-2.5 whitespace-pre z-1 font-libre text-[16px] tracking-[-0.04em] leading-[1.6] text-promoto-dark hover:text-promoto-green'
+			transition={{ type: 'spring', duration: 0.4 }}
+		>
+			{link.name}
+		</MotionLink>
+	));
+
+	const toggleMenu = () => {
+		setIsOpen((prev) => !prev);
+	};
+
+	useEffect(() => {
+		const checkScroll = () => {
+			if (window.scrollY > 10) setScrolled(true);
+			else setScrolled(false);
+		};
+
+		checkScroll();
+
+		const handleScroll = () => {
+			if (window.scrollY > 10) setScrolled(true);
+			else {
+				setIsOpen(false);
+				setScrolled(false);
+			}
+		};
+
+		window.addEventListener('scroll', handleScroll);
+		return () => window.removeEventListener('scroll', handleScroll);
+	}, []);
+
+	return (
+		<header className='flex flex-col w-full promoto-tablet:px-4 justify-center items-center max-w-[1200px] content-center gap-[60px] promoto-tablet:gap-2.5 fixed top-5 z-100'>
+			<div
+				className={`w-full max-w-300 flex-1 flex promoto-tablet:grid grid-cols-3 justify-between items-center py-5 promoto-tablet:py-4 promoto-tablet:pr-4 promoto-tablet:pl-6 backdrop-blur-[20px] content-center rounded-[26px] transition-colors ease-in duration-700 ${
+					scrolled ? 'bg-white' : 'bg-promoto-off-white'
+				}`}
+			>
+				<div
+					className={`w-full flex flex-col flex-1 ${
+						isOpen && 'pt-4 pb-15 gap-15'
+					}  justify-center items-center content-center flex-nowrap`}
+				>
+					<div className='flex w-full px-6 gap-2.5 items-center'>
+						<div
+							className={`flex justify-center items-xenter content-center gap-2.5 whitespace-pre font-medium font-host text-promoto-dark text-[28px] tracking-[-0.04em] leading-[0.9]`}
+						>
+							Promoto©
+						</div>
+
+						<MenuButton
+							show={isOpen}
+							toggleMenu={toggleMenu}
+						/>
+					</div>
+					<Sidebar
+						show={isOpen}
+						close={closeSideBar}
+					/>
 				</div>
-				{/* <div></div> */}
+				<div className='hidden promoto-tablet:flex flex-col items-center content-center gap-2 '>
+					<div className='flex items-center content-center gap-7'>
+						{linkGroup}
+					</div>
+				</div>
+				<div className=' flex justify-end'>
+					<Button
+						size={'lg'}
+						className='px-6 py-2 hidden promoto-tablet:block animate-bounce overflow-hidden cursor-pointer hover:scale-[1.05] transition-transform'
+					>
+						<span className='inline-block font-hanken'>Start Trial</span>
+					</Button>
+				</div>
 			</div>
 		</header>
 	);

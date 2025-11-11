@@ -1,7 +1,6 @@
 import { PiCubeTransparentLight, PiTelegramLogo } from 'react-icons/pi';
 import { GoBell, GoPencil, GoWorkflow } from 'react-icons/go';
 import { BsToggles } from 'react-icons/bs';
-import { hankenGrotesk } from '@/app/fonts';
 
 const BottomFeatures = () => {
 	const bottomFeatures = [
@@ -37,19 +36,19 @@ const BottomFeatures = () => {
 		},
 	].map((x, i) => (
 		<div
-			className='w-[197px flex justify-center items-center overflow-clip content-center flex-nowrap gap-2.5'
+			className='w-full flex justify-center items-center overflow-clip content-center flex-nowrap gap-2.5'
 			key={i}
 		>
-			<div className='flex-1 flex flex-col flex-nowrap gap-4 w-full'>
+			<div className='flex-1 flex flex-col flex-nowrap gap-4 w-full h-full'>
 				<div className='flex text-2xl'>{x.icon}</div>
 				<div className='w-full flex flex-col flex-nowrap gap-2'>
 					<h6
-						className={`w-full whitespace-pre-wrap wrap-break-word text-wrap text-[#001b10] leading-[1.2] ${hankenGrotesk.className} font-semibold text-[20px] tracking-[-0.04em]`}
+						className={`w-full whitespace-pre-wrap wrap-break-word text-wrap text-promoto-dark leading-[1.2] font-hanken font-semibold text-[20px] tracking-[-0.04em]`}
 					>
 						{x.title}
 					</h6>
 					<p
-						className={`${hankenGrotesk.className} tracking-[-0.04em] leading-[1.6] whitespace-pre-wrap text-[#01b10] `}
+						className={`font-hanken tracking-[-0.04em] leading-[1.6] whitespace-pre-wrap text-[#01b10] `}
 					>
 						{x.subtitle}
 					</p>
@@ -59,7 +58,7 @@ const BottomFeatures = () => {
 	));
 
 	return (
-		<div className='w-full grid bg-white overflow-clip grid-cols-1 min-w-[50px] justify-center p-6 gap-y-8'>
+		<div className='w-full max-md:max-w-140 grid md:grid-cols-2 xl:grid-cols-3 bg-white overflow-clip grid-cols-1 min-w-[50px] justify-center p-6 md:p-12 gap-y-8 md:gap-y-12 md:gap-x-20 xl:gap-x-30 rounded-[20px]'>
 			{bottomFeatures}
 		</div>
 	);

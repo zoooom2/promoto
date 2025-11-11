@@ -1,16 +1,16 @@
 import Image from 'next/image';
-import img from '@/assets/CTABg.png';
+import img from '@/public/assets/CTABg.png';
 import { Button } from '@/components/ui/button';
 
 const CTA = () => {
 	return (
-		<section className='w-full flex flex-col items-center bg-[#001b10] overflow-clip content-center flex-nowrap  gap-2.5'>
+		<section className='w-full flex flex-col items-center bg-promoto-dark overflow-clip content-center flex-nowrap  gap-2.5'>
 			<div
-				className='w-ful flex flex-col items-center py-20 px-5 max-w-300 overflow-clip content-center flex-nowrap gap-12'
+				className='w-full flex flex-col items-center py-20 px-5 max-w-300 overflow-clip content-center flex-nowrap gap-12'
 				id='cta-logo'
 			>
-				<div className='w-[350px] flex justify-center items-center overflow-clip  content-center flex-nowrap '>
-					<div className='w-[338px] flex justify-center items-center p-px backdrop-blur-[20px] overflow-clip content-center flex-nowrap gap-2.5 relative'>
+				<div className='w-[320px] min-[400px]:w-[350px] md:w-[530px] flex justify-center items-center overflow-clip  content-center flex-nowrap rounded-2xl'>
+					<div className='w-[338px] md:w-full max-w-[530px] flex justify-center items-center p-px backdrop-blur-[20px] overflow-clip content-center flex-nowrap gap-2.5 relative'>
 						<div className='absolute top-0 left-0 w-full h-full bg-[rgba(255,255,255,0.1)] rounded-[20px] border border-white z-1'></div>
 						<figure className='absolute top-0 left-0 w-full h-full'>
 							<Image
@@ -26,7 +26,7 @@ const CTA = () => {
 										<h3 className='font-hanken whitespace-pre text-white leading-[1.2] text-[44px] font-medium tracking-[-0.04em]'>
 											One-Click
 										</h3>
-										<h3 className='font-libre text-[#f2ff00] italic text-[44px] leading-[1.2] whitespace-pre'>
+										<h3 className='font-libre text-promoto-yellow italic text-[44px] leading-[1.2] whitespace-pre'>
 											Automation
 										</h3>
 									</div>
@@ -34,7 +34,7 @@ const CTA = () => {
 										Engage them smarter with automation powered by data.
 									</p>
 								</div>
-								<Button className='bg-[#f2ff00] text-[#001b10] rounded-[12px] py-2 px-6 font-hanken'>
+								<Button className='bg-promoto-yellow text-promoto-dark rounded-[12px] py-2 px-6 font-hanken'>
 									Book a Demo
 								</Button>
 							</div>

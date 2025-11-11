@@ -1,39 +1,38 @@
 import { GoDatabase } from 'react-icons/go';
 import { MdAnalytics } from 'react-icons/md';
 import { PiNetwork } from 'react-icons/pi';
-import { hankenGrotesk } from '@/app/fonts';
 
 const GrowthFeatures = () => {
 	return (
-		<div className='w-full flex flex-col  items-center flex-nowrap gap-4'>
+		<div className='w-full flex flex-col items-center flex-nowrap gap-4'>
 			<div className='w-full h-px bg-[rgba(255,255,255,0.1)] overflow-clip'></div>
-			<div className='w-full flex justify-center items-center overflow-visible content-center flex-wrap gap-x-5 gap-y-2'>
+			<div className='w-full flex justify-center md:justify-between items-center overflow-visible content-center flex-wrap max-promoto-tablet:gap-x-5 max-promoto-tablet:gap-y-2'>
 				<div className='flex items-center overflow-visible content-center flex-nowrap gap-2'>
-					<span className='text-[16px] text-[#f2ff00]'>
-						<GoDatabase />
+					<span className=' text-promoto-yellow'>
+						<GoDatabase size={16} />
 					</span>
 					<span
-						className={`${hankenGrotesk.className} whitespace-pre text-[#f2ff00] leading-[120%]`}
+						className={`font-hanken whitespace-pre text-promoto-yellow leading-[120%]`}
 					>
 						Data & integration
 					</span>
 				</div>
 				<div className='flex items-center overflow-visible content-center flex-nowrap gap-2'>
-					<span className='text-[16px] text-[#f2ff00]'>
-						<PiNetwork />
+					<span className='text-promoto-yellow'>
+						<PiNetwork size={16} />
 					</span>
 					<span
-						className={`${hankenGrotesk.className} whitespace-pre text-[#f2ff00] leading-[120%]`}
+						className={`font-hanken whitespace-pre text-promoto-yellow leading-[120%]`}
 					>
 						Journeys
 					</span>
 				</div>
 				<div className='flex items-center overflow-visible content-center flex-nowrap gap-2'>
-					<span className='text-[16px] text-[#f2ff00]'>
-						<MdAnalytics />
+					<span className=' text-promoto-yellow'>
+						<MdAnalytics size={16} />
 					</span>
 					<span
-						className={`${hankenGrotesk.className} whitespace-pre text-[#f2ff00] leading-[120%]`}
+						className={`font-hanken whitespace-pre text-promoto-yellow leading-[120%]`}
 					>
 						Insights & Analytics
 					</span>

@@ -1,5 +1,4 @@
 import { Checkbox } from '@/components/ui/checkbox';
-import { hankenGrotesk } from '@/app/fonts';
 
 const PersonalizedChecklist = () => {
 	const personalized = [
@@ -14,9 +13,7 @@ const PersonalizedChecklist = () => {
 			<div className='flex items-center flex-1 bg-white flex-nowrap gap-2 rounded-xl'>
 				<div className='py-2 pl-2 pr-4 flex items-center bg-white content-center flex-nowrap gap-2 rounded-xl'>
 					<Checkbox />
-					<p
-						className={`${hankenGrotesk.className} traking-[-0.04em] text-[16px] capitalize`}
-					>
+					<p className={`font-hanken traking-[-0.04em] text-[16px] capitalize`}>
 						{x}
 					</p>
 				</div>

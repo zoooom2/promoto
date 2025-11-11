@@ -1,34 +1,11 @@
-import Image from 'next/image';
-import img from '@/assets/footerBg.png';
-import Link from 'next/link';
 import FooterLinkGroup from './FooterLinkGroup';
 
 const Footer = () => {
-	const mainLinks = [
-		{ name: 'Home', link: '#' },
-		{ name: 'Features', link: '#' },
-		{ name: 'About', link: '#' },
-		{ name: 'Pricing', link: '#' },
-		{ name: 'Contact', link: '#' },
-		{ name: 'blog', link: '#' },
-	].map((link, index) => (
-		<li
-			key={index}
-			className='font-hanken whitespace-pre text-white leading-[1.2]'
-		>
-			<Link
-				href={link.link}
-				scroll={false}
-			>
-				{link.name}
-			</Link>
-		</li>
-	));
 	return (
-		<footer className='w-full flex flex-col items-center bg-[#001b10] overflow-clip content-center flex-nowrap gap-[54px]'>
-			<div className='w-full flex flex-col justify-center px-5 pb-5 max-w-300 content-center flex-nowrap gap-14 relative'>
+		<footer className='w-full flex flex-col items-center bg-promoto-dark overflow-clip content-center flex-nowrap gap-[54px] md:h-[450px] pt-15'>
+			<div className='w-full flex flex-col justify-center items-center px-5 pb-5 max-w-300 content-center flex-nowrap gap-14 relative'>
 				<div className='w-full flex flex-col justify-center items-center max-w-230 overflow-clip content-center flex-nowrap gap-15 z-1'>
-					<div className='w-full grid max-w-150 grid-cols-2 min-w-[50px] justify-center gap-y-10 gap-x-4'>
+					<div className='w-full grid max-md:max-w-150 grid-cols-2 min-w-[50px] justify-center gap-y-10 gap-x-4 md:flex'>
 						<FooterLinkGroup
 							title='Main Page'
 							linkArr={[
@@ -37,7 +14,7 @@ const Footer = () => {
 								{ name: 'About', link: '#' },
 								{ name: 'Pricing', link: '#' },
 								{ name: 'Contact', link: '#' },
-								{ name: 'blog', link: '#' },
+								{ name: 'Blog', link: '#' },
 							]}
 						/>
 						<FooterLinkGroup
@@ -69,13 +46,6 @@ const Footer = () => {
 					</p>
 				</div>
 			</div>
-			{/* <figure className=' w-full h-[200px]'>
-				<Image
-					src={img}
-					alt='footer bg'
-					className='object-top w-full h-ful'
-				/>
-			</figure> */}
 		</footer>
 	);
 };

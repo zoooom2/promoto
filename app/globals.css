@@ -45,12 +45,14 @@
   --color-promoto-yellow:#f2ff00;
   --color-promoto-dark:#001b10;
   --color-promoto-green:#066f41;
-  --color-promoto-calendron-green:#CDD2A4;
-  --color-promoto-off-white:#F8F1E1;
+  --color-promoto-calendron-green:#cdd2a4;
+  --color-promoto-off-white:#f8f1e1;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --breakpoint-promoto-tablet:810px;
+  --breakpoint-promoto-laptop:1200px;
 }
 
 :root {
@@ -131,3 +133,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+body{
+  letter-spacing: -0.04em;
+}
+

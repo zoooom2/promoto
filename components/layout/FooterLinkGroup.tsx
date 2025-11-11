@@ -21,7 +21,7 @@ const FooterLinkGroup = ({
 		</li>
 	));
 	return (
-		<div className='flex flex-col flex-nowrap gap-6'>
+		<div className='flex flex-col flex-nowrap gap-6 items-ceter w-full'>
 			<h6 className='text-promoto-yellow leading-[1.2] whitespace-pre font-hanken font-semibold text-[20px]'>
 				{title}
 			</h6>

@@ -1,17 +1,17 @@
 'use client';
 
 import Image from 'next/image';
-import bgImg from '@/assets/testimonialBg.webp';
-import navIcon from '@/assets/Phase 3 (Testimonial).png';
+import bgImg from '@/public/assets/testimonialBg.webp';
+import navIcon from '@/public/assets/Phase 3 (Testimonial).png';
 import { PiArrowLeftLight, PiArrowRightLight } from 'react-icons/pi';
 
 import { useState, useEffect, useRef } from 'react';
-import img1 from '@/assets/gal1.webp';
-import img2 from '@/assets/gal2.webp';
-import img3 from '@/assets/gal3.webp';
-import img4 from '@/assets/gal4.webp';
-import img5 from '@/assets/gal5.webp';
-import { motion } from 'framer-motion';
+import img1 from '@/public/assets/gal1.webp';
+import img2 from '@/public/assets/gal2.webp';
+import img3 from '@/public/assets/gal3.webp';
+import img4 from '@/public/assets/gal4.webp';
+import img5 from '@/public/assets/gal5.webp';
+import { motion } from 'motion/react';
 import { Button } from '@/components/ui/button';
 
 import { MdFormatQuote } from 'react-icons/md';
@@ -107,7 +107,7 @@ const Testimonials = () => {
 					/>
 				</figure>
 
-				<div className='absolute inset-0 bg-[#066f41]/60 backdrop-blur-[27px]' />
+				<div className='absolute inset-0 bg-promoto-green/60 backdrop-blur-[27px]' />
 
 				<div className='relative lg:w-[1200px] flex flex-col items-center gap-20 z-10'>
 					<div className='relative flex justify-center items-center w-full h-[416px] overflow-visible'>
@@ -122,7 +122,11 @@ const Testimonials = () => {
 									variants={imageVariants}
 									animate={position}
 									transition={{ duration: 0.9, ease: 'easeInOut' }}
-									style={{ width: '312px', height: '368px' }}
+									style={{
+										width: '312px',
+										height: '368px',
+										willChange: 'transform, opacity, zIndex',
+									}}
 									onMouseEnter={() => setIsPaused(true)}
 									onMouseLeave={() => setIsPaused(false)}
 								>
@@ -154,7 +158,7 @@ const Testimonials = () => {
 													</p>
 												</div>
 											</div>
-											<div className='absolute top-0 right-0 text-[#f2ff00] text-7xl'>
+											<div className='absolute top-0 right-0 text-promoto-yellow text-7xl'>
 												<MdFormatQuote />
 											</div>
 										</>
@@ -163,7 +167,7 @@ const Testimonials = () => {
 							);
 						})}
 						<div className='z-1 flex  justify-center items-center p-2 w-full max-w-[360px] content-center flex-nowrap gap-2.5  border border-[rgba(255,255,255,0.1)] rounded-[20px] bg-[rgba(255,255,255,0.1)]'>
-							<div className='flex-1  flex flex-col justify-center items-center p-4 bg-[#001b10] content-center flex-nowrap gap-2.5 rounded-2xl relative'>
+							<div className='flex-1  flex flex-col justify-center items-center p-4 bg-promoto-dark content-center flex-nowrap gap-2.5 rounded-2xl relative'>
 								<div className='h-[368px] rounded-[12px] aspect-[0.8478260869565217/1]'></div>
 							</div>
 						</div>

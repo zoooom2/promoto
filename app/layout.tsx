@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Navbar from '@/components/layout/navbar';
-import Sidebar from '@/components/layout/sidebar';
 import { hankenGrotesk, hostGrotesk, libreCaslonText } from './fonts';
 import Footer from '@/components/layout/Footer';
 
@@ -18,10 +17,10 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={` antialiased relative min-w-screen min-h-screen ${hankenGrotesk.variable} ${libreCaslonText.variable} ${hostGrotesk.variable}`}
+				className={` antialiased relative min-w-screen min-h-screen ${hankenGrotesk.variable} ${libreCaslonText.variable} ${hostGrotesk.variable} flex flex-col items-center`}
 			>
 				<Navbar />
-				{/* <Sidebar /> */}
+
 				{children}
 				<Footer />
 			</body>
