@@ -12,12 +12,7 @@ const FooterLinkGroup = ({
 			key={index}
 			className='font-hanken whitespace-pre text-white leading-[1.2]'
 		>
-			<Link
-				href={link.link}
-				scroll={false}
-			>
-				{link.name}
-			</Link>
+			<Link href={link.link}>{link.name}</Link>
 		</li>
 	));
 	return (

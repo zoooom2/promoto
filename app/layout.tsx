@@ -17,10 +17,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body
-				className={` antialiased relative min-w-screen min-h-screen ${hankenGrotesk.variable} ${libreCaslonText.variable} ${hostGrotesk.variable} flex flex-col items-center`}
+				className={` antialiased relative w-screen min-h-screen ${hankenGrotesk.variable} ${libreCaslonText.variable} ${hostGrotesk.variable} flex flex-col items-center`}
 			>
 				<Navbar />
-
 				{children}
 				<Footer />
 			</body>

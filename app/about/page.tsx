@@ -1,8 +1,8 @@
+import BehindTheScenes from '@/components/about/behindTheScenes/behindTheScenes';
+import Story from '@/components/about/story/story';
+import WhatSetsUsApart from '@/components/about/whatSetsUsApart/whatSetsUsApart';
 import Brandticker from '@/components/global/brandTicker/Brandticker';
 import CTA from '@/components/global/CTA/CTA';
-import BehindTheScenes from '@/pages/about/behindTheScenes/behindTheScenes';
-import Story from '@/pages/about/story/story';
-import WhatSetsUsApart from '@/pages/about/whatSetsUsApart/whatSetsUsApart';
 
 const Page = () => {
 	return (

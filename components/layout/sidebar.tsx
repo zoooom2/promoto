@@ -2,9 +2,10 @@ import { navLinks } from '@/lib/constants';
 import { Button } from '../ui/button';
 import Link from 'next/link';
 import { libreCaslonText } from '@/app/fonts';
+import { usePathname } from 'next/navigation';
 
 const Sidebar = ({ show, close }: { show: boolean; close: () => void }) => {
-	//change navlink color and set condition
+	const path = usePathname();
 
 	const navlist = navLinks.map((list) => {
 		return (
@@ -14,7 +15,13 @@ const Sidebar = ({ show, close }: { show: boolean; close: () => void }) => {
 				onClick={close}
 			>
 				<li
-					className={`w-auto h-auto whitespace-pre z-1 font-normal italic ${libreCaslonText.className} text-promoto-green text-[24px] tracking-[-0.04em] leading-[160%]`}
+					className={`w-auto h-auto whitespace-pre z-1 font-normal italic ${
+						libreCaslonText.className
+					} ${
+						path === list.link
+							? 'text-promoto-green scale-105'
+							: 'text-promoto-dark'
+					}  text-[24px] tracking-[-0.04em] leading-[160%]`}
 				>
 					{list.name}
 				</li>

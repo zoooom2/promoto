@@ -1,3 +1,8 @@
+import {
+	mainPageFooterLinkGroup,
+	socialFooterLinkGroup,
+	utilityFooterLinkGroup,
+} from '@/lib/constants';
 import FooterLinkGroup from './FooterLinkGroup';
 
 const Footer = () => {
@@ -8,32 +13,15 @@ const Footer = () => {
 					<div className='w-full grid max-md:max-w-150 grid-cols-2 min-w-[50px] justify-center gap-y-10 gap-x-4 md:flex'>
 						<FooterLinkGroup
 							title='Main Page'
-							linkArr={[
-								{ name: 'Home', link: '#' },
-								{ name: 'Features', link: '#' },
-								{ name: 'About', link: '#' },
-								{ name: 'Pricing', link: '#' },
-								{ name: 'Contact', link: '#' },
-								{ name: 'Blog', link: '#' },
-							]}
+							linkArr={mainPageFooterLinkGroup}
 						/>
 						<FooterLinkGroup
 							title='Utility'
-							linkArr={[
-								{ name: 'Privacy Policy', link: '#' },
-								{ name: 'Terms & Conditions', link: '#' },
-								{ name: 'Refund Policy', link: '#' },
-								{ name: '404', link: '#' },
-							]}
+							linkArr={utilityFooterLinkGroup}
 						/>
 						<FooterLinkGroup
 							title='Social'
-							linkArr={[
-								{ name: 'Facebook', link: '#' },
-								{ name: 'LinkedIn', link: '#' },
-								{ name: 'Instagram', link: '#' },
-								{ name: 'Twitter (X)', link: '#' },
-							]}
+							linkArr={socialFooterLinkGroup}
 						/>
 					</div>
 				</div>

@@ -6,8 +6,11 @@ import MenuButton from './menubtn';
 import { navLinks } from '@/lib/constants';
 import { useEffect, useState } from 'react';
 import Sidebar from './sidebar';
+import { usePathname } from 'next/navigation';
+import Link from 'next/link';
 
 const Navbar = () => {
+	const path = usePathname();
 	const [scrolled, setScrolled] = useState(false);
 	const [isOpen, setIsOpen] = useState(false);
 
@@ -19,7 +22,11 @@ const Navbar = () => {
 		<MotionLink
 			key={index}
 			href={link.link}
-			className='flex italic items-center px0.5 content-center gap-2.5 whitespace-pre z-1 font-libre text-[16px] tracking-[-0.04em] leading-[1.6] text-promoto-dark hover:text-promoto-green'
+			className={`flex italic items-center px-0.5 content-center gap-2.5 whitespace-pre z-1 font-libre text-[16px] tracking-[-0.04em] leading-[1.6] ${
+				path === link.link
+					? 'text-promoto-green scale-[1.2]'
+					: 'text-promoto-dark hover:text-promoto-green'
+			} `}
 			transition={{ type: 'spring', duration: 0.4 }}
 		>
 			{link.name}
@@ -63,11 +70,12 @@ const Navbar = () => {
 					}  justify-center items-center content-center flex-nowrap`}
 				>
 					<div className='flex w-full px-6 gap-2.5 items-center'>
-						<div
+						<Link
+							href={'/'}
 							className={`flex justify-center items-xenter content-center gap-2.5 whitespace-pre font-medium font-host text-promoto-dark text-[28px] tracking-[-0.04em] leading-[0.9]`}
 						>
 							Promoto©
-						</div>
+						</Link>
 
 						<MenuButton
 							show={isOpen}
