@@ -3,6 +3,7 @@ import './globals.css';
 import Navbar from '@/components/layout/navbar';
 import { hankenGrotesk, hostGrotesk, libreCaslonText } from './fonts';
 import Footer from '@/components/layout/Footer';
+import { Suspense } from 'react';
 
 export const metadata: Metadata = {
 	title: 'Home',
@@ -19,9 +20,13 @@ export default function RootLayout({
 			<body
 				className={` antialiased relative w-screen min-h-screen ${hankenGrotesk.variable} ${libreCaslonText.variable} ${hostGrotesk.variable} flex flex-col items-center`}
 			>
-				<Navbar />
+				<Suspense fallback={<div />}>
+					<Navbar />
+				</Suspense>
 				{children}
-				<Footer />
+				<Suspense fallback={<div />}>
+					<Footer />
+				</Suspense>
 			</body>
 		</html>
 	);

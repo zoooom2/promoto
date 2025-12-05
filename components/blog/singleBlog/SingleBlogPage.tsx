@@ -19,7 +19,12 @@ const fetchBlog = (slug: string) => {
 	return data;
 };
 
-const SingleBlogPage = async ({ slug }: { slug: string }) => {
+const SingleBlogPage = async ({
+	params,
+}: {
+	params: Promise<{ slug: string }>;
+}) => {
+	const slug = (await params).slug;
 	const blog = await fetchBlog(slug);
 	const data = blog[0];
 	return (

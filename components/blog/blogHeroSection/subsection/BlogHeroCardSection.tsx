@@ -8,7 +8,7 @@ import useSWR from 'swr';
 import { useEffect, useState } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import Link from 'next/link';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { SanityImageSource } from '@sanity/image-url';
 
 const query = `*[_type == "post" && featured==true] {
   title,
