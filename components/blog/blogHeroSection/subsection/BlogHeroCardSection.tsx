@@ -38,7 +38,7 @@ const BlogHeroCardSection = ({ data }: BlogCardType) => {
 		<div className='flex flex-col w-full justify-center items-center gap-5 transition-all duration-2000 ease-in-out content-center'>
 			{/*bloghero dynamic*/}
 			<div className='w-full promoto-tablet:max-w-[738px] promoto-laptop:max-w-[1128px] flex flex-col promoto-tablet:flex-row items-center p-4 promoto-tablet:p-6 promoto-laptop:p-8 bg-promoto-dark overflow-clip content-center max-promoto-tablet:gap-6 rounded-[20px] relative'>
-				<figure className='w-full promoto-tablet:w-[49%] flex justify-center items-center overflow-clip content-center gap-2.5 rounded-[16px] bg-white h-[500px] relative'>
+				<figure className='w-full promoto-tablet:w-[49%] flex justify-center items-center overflow-clip content-center gap-2.5 rounded-[16px] bg-white h-[350px] promoto-tablet:h-[500px] relative'>
 					{data.map(
 						(blog: { blogThumbnail: SanityImageSource }, index: number) => (
 							<Image
@@ -56,10 +56,10 @@ const BlogHeroCardSection = ({ data }: BlogCardType) => {
 				<div className='w-full promoto-tablet:flex-1 promoto-tablet:h-104 flex justify-center items-center overflow-clip content-center gap-2.5 promoto-tablet:p-6 promoto-laptop:p-10'>
 					<div className='flex-1 flex flex-col gap-8 promoto-tablet:gap-12 promoto-laptop:gap-18'>
 						<div className='w-full flex flex-col gap-3 promoto-tablet:gap-4 leading-[1.2]'>
-							<h5 className='text-white font-libre text-[32px] whitespace-pre-wrap wrap-break-word leading-[1.2] italic capitalize font-semibold'>
+							<h5 className='text-white font-libre text-[24px] promoto-tablet:text-[32px] whitespace-pre-wrap wrap-break-word leading-[1.2] italic capitalize font-semibold'>
 								{data[featuredBlogIndex].title}
 							</h5>
-							<p className='text-[rgba(255,255,255,0.8)] font-hanken text-[16px] line-clamp-4'>
+							<p className='text-[rgba(255,255,255,0.8)] font-hanken text-[16px] line-clamp-3 promoto-tablet:line-clamp-4'>
 								{data[featuredBlogIndex].subtitle}
 							</p>
 						</div>
