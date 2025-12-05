@@ -2,31 +2,24 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
-import { client } from '@/sanity/lib/client';
-import { groq } from 'next-sanity';
-import useSWR from 'swr';
+import { PortableTextBlock } from 'next-sanity';
 import { useEffect, useState } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import Link from 'next/link';
 import { SanityImageSource } from '@sanity/image-url';
 
-const query = `*[_type == "post" && featured==true] {
-  title,
-  publishedAt,
-  blogThumbnail,
-  author,
-  subtitle,
-  body,
-  slug
-}`;
-
-const fetchFeaturedBlog = () => {
-	const data = client.fetch(groq`${query}`);
-	return data;
-};
-
-const BlogHeroCardSection = () => {
-	const { data, isLoading, error } = useSWR(query, fetchFeaturedBlog);
+interface BlogCardType {
+	data: {
+		title: string;
+		publishedAt: string;
+		blogThumbnail: SanityImageSource;
+		author: string;
+		subtitle: string;
+		body: PortableTextBlock[];
+		slug: { current: string };
+	}[];
+}
+const BlogHeroCardSection = ({ data }: BlogCardType) => {
 	const [featuredBlogIndex, setFeaturedBlogIndex] = useState(0);
 
 	useEffect(() => {
@@ -40,17 +33,6 @@ const BlogHeroCardSection = () => {
 
 		return () => clearInterval(changeFeaturedBlog);
 	}, [data]);
-
-	if (isLoading) {
-		return (
-			<div className='w-full min-h-[600px] bg-promoto-dark text-promoto-off-white flex justify-center items-center font-hanken rounded-xl text-2xl'>
-				Loading...
-			</div>
-		);
-	}
-	if (error) {
-		return <div>Error loading featured blog.</div>;
-	}
 
 	return (
 		<div className='flex flex-col w-full justify-center items-center gap-5 transition-all duration-2000 ease-in-out content-center'>
