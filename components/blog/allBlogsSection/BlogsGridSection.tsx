@@ -4,9 +4,16 @@ import { client } from '@/sanity/lib/client';
 import { BlogCard } from '@/lib/types';
 import { urlFor } from '@/sanity/lib/image';
 import Pagination from '@/components/global/Pagination';
-const getAllBlogs = async () => {
+
+const getAllBlogs = async ({
+	startIndex,
+	endIndex,
+}: {
+	startIndex: number;
+	endIndex: number;
+}) => {
 	const blogs =
-		await client.fetch(groq`*[_type == "post"]|order(_createdAt desc){
+		await client.fetch(groq`*[_type == "post"]|order(_createdAt desc) [${startIndex}...${endIndex}]{
         title,
         "slug":slug.current,
         blogThumbnail
@@ -14,8 +21,21 @@ const getAllBlogs = async () => {
 
 	return blogs;
 };
-const BlogsGridSection = async () => {
-	const data: BlogCard[] = await getAllBlogs();
+
+const PAGE_SIZE = 3;
+interface Props {
+	page: string;
+}
+
+const BlogsGridSection = async ({ params }: { params: Promise<Props> }) => {
+	const page = parseInt((await params).page || '1', 10);
+	const startIndex = (page - 1) * PAGE_SIZE;
+	const endIndex = startIndex + PAGE_SIZE;
+
+	const data: BlogCard[] = await getAllBlogs({ startIndex, endIndex });
+
+	const total = await client.fetch(groq`count(*[_type == "post"])`);
+	const totalPages = Math.ceil(total / PAGE_SIZE);
 
 	const gridCards = data.map((card, index) => (
 		<BlogGridCard
@@ -41,7 +61,10 @@ const BlogsGridSection = async () => {
 					<div className='w-full grid grid-cols-1 promoto-tablet:grid-cols-2 promoto-laptop:grid-cols-3 justify-center gap-y-10 gap-x-6'>
 						{gridCards}
 					</div>
-					<Pagination />
+					<Pagination
+						total={totalPages}
+						page={page}
+					/>
 				</div>
 			</div>
 		</section>

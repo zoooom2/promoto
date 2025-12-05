@@ -12,6 +12,12 @@ export const postType = defineType({
 			validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: 'featured',
+			type: 'boolean',
+			title: 'Featured Post',
+			initialValue: false,
+		}),
+		defineField({
 			name: 'slug',
 			type: 'slug',
 			title: 'Slug',

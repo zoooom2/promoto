@@ -10,7 +10,7 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
 	reactStrictMode: true,
-	// cacheComponents: true,
+	cacheComponents: true,
 	pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
 	images: {
 		remotePatterns: [{ protocol: 'https', hostname: 'cdn.sanity.io' }],

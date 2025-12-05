@@ -1,36 +1,97 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
-import heroImg from '@/public/assets/about-work.webp';
+import { client } from '@/sanity/lib/client';
+import { groq } from 'next-sanity';
+import useSWR from 'swr';
+import { useEffect, useState } from 'react';
+import { urlFor } from '@/sanity/lib/image';
+import Link from 'next/link';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
+
+const query = `*[_type == "post" && featured==true] {
+  title,
+  publishedAt,
+  blogThumbnail,
+  author,
+  subtitle,
+  body,
+  slug
+}`;
+
+const fetchFeaturedBlog = () => {
+	const data = client.fetch(groq`${query}`);
+	return data;
+};
+
 const BlogHeroCardSection = () => {
+	const { data, isLoading, error } = useSWR(query, fetchFeaturedBlog);
+	const [featuredBlogIndex, setFeaturedBlogIndex] = useState(0);
+
+	useEffect(() => {
+		if (!data || data.length === 0) return;
+
+		const changeFeaturedBlog = setInterval(() => {
+			setFeaturedBlogIndex((prevIndex) =>
+				data ? (prevIndex + 1) % data.length : 0
+			);
+		}, 15000);
+
+		return () => clearInterval(changeFeaturedBlog);
+	}, [data]);
+
+	if (isLoading) {
+		return (
+			<div className='w-full min-h-[600px] bg-promoto-dark text-promoto-off-white flex justify-center items-center font-hanken rounded-xl text-2xl'>
+				Loading...
+			</div>
+		);
+	}
+	if (error) {
+		return <div>Error loading featured blog.</div>;
+	}
+
 	return (
-		<div className='flex flex-col w-full justify-center items-center gap-5'>
+		<div className='flex flex-col w-full justify-center items-center gap-5 transition-all duration-2000 ease-in-out content-center'>
 			{/*bloghero dynamic*/}
 			<div className='w-full promoto-tablet:max-w-[738px] promoto-laptop:max-w-[1128px] flex flex-col promoto-tablet:flex-row items-center p-4 promoto-tablet:p-6 promoto-laptop:p-8 bg-promoto-dark overflow-clip content-center max-promoto-tablet:gap-6 rounded-[20px] relative'>
-				<figure className='w-full promoto-tablet:w-[49%] flex justify-center items-center overflow-clip content-center gap-2.5 rounded-[16px] bg-white'>
-					<Image
-						src={heroImg}
-						alt=''
-					/>
+				<figure className='w-full promoto-tablet:w-[49%] flex justify-center items-center overflow-clip content-center gap-2.5 rounded-[16px] bg-white h-[500px] relative'>
+					{data.map(
+						(blog: { blogThumbnail: SanityImageSource }, index: number) => (
+							<Image
+								src={urlFor(blog.blogThumbnail).url()}
+								alt=''
+								width={500}
+								height={1000}
+								className={`${featuredBlogIndex === index ? 'opacity-100' : 'opacity-0'} object-cover w-full h-full absolute transition-all duration-1000 ease-in-out will-change-auto`}
+								key={index}
+							/>
+						)
+					)}
 				</figure>
+
 				<div className='w-full promoto-tablet:flex-1 promoto-tablet:h-104 flex justify-center items-center overflow-clip content-center gap-2.5 promoto-tablet:p-6 promoto-laptop:p-10'>
 					<div className='flex-1 flex flex-col gap-8 promoto-tablet:gap-12 promoto-laptop:gap-18'>
 						<div className='w-full flex flex-col gap-3 promoto-tablet:gap-4 leading-[1.2]'>
 							<h5 className='text-white font-libre text-[32px] whitespace-pre-wrap wrap-break-word leading-[1.2] italic capitalize font-semibold'>
-								5 Ways Marketing Automation Boosts Customer Engagement
+								{data[featuredBlogIndex].title}
 							</h5>
-							<p className='text-[rgba(255,255,255,0.8)] font-hanken text-[16px]'>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Doloribus, repellendus eum reiciendis error provident mollitia
-								omnis veniam aut laboriosam magni culpa. Accusamus suscipit
-								molestias animi fugiat incidunt earum nobis ut?
+							<p className='text-[rgba(255,255,255,0.8)] font-hanken text-[16px] line-clamp-4'>
+								{data[featuredBlogIndex].subtitle}
 							</p>
 						</div>
 						<Button
 							variant={'ghost'}
 							className='text-promoto-yellow w-fit cursor-pointer px-0 hover:bg-transparent hover:text-promoto-yellow'
+							asChild
 						>
-							Read full blog <HiOutlineArrowLongRight />
+							<Link
+								href={`/blog/${data[featuredBlogIndex].slug?.current} `}
+								className='flex justify-center items-center gap-2 text-promoto-yellow font-hanken text-[16px] leading-[1.6] trcking-[-0.04em]'
+							>
+								Read full blog <HiOutlineArrowLongRight />
+							</Link>
 						</Button>
 					</div>
 				</div>

@@ -3,6 +3,7 @@ import { urlFor } from '@/sanity/lib/image';
 import { groq } from 'next-sanity';
 import Image from 'next/image';
 import CustomPortableRenderer from '@/sanity/lib/CustomPortableRenderer';
+
 const query = `*[_type == "post" && slug.current==$slug] {
   title,
   publishedAt,
