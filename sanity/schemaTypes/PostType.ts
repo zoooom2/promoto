@@ -56,6 +56,13 @@ export const postType = defineType({
 			// validation: (rule) => rule.required(),
 		}),
 		defineField({
+			name: 'embedding',
+			title: 'Content Embedding',
+			type: 'array',
+			of: [{ type: 'number' }],
+			readOnly: true,
+		}),
+		defineField({
 			name: 'body',
 			type: 'array',
 			of: [{ type: 'block' }, { type: 'image' }],

@@ -12,3 +12,28 @@
  * ---------------------------------------------------------------------------------
  */
 
+import { SanityImageSource } from '@sanity/image-url';
+import { PortableTextBlock } from 'next-sanity';
+
+export interface Post {
+	_id: string;
+	_type: 'post';
+	_createdAt: string;
+	_updatedAt: string;
+
+	title: string;
+	featured: boolean;
+	slug: {
+		_type: 'slug';
+		current: string;
+	};
+	publishedAt: string;
+	blogThumbnail: SanityImageSource;
+	author: string;
+	tag?: string;
+	subtitle?: string;
+
+	embedding: number[];
+
+	body: PortableTextBlock[];
+}

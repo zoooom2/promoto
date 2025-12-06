@@ -3,6 +3,8 @@ import { urlFor } from '@/sanity/lib/image';
 import { groq } from 'next-sanity';
 import Image from 'next/image';
 import CustomPortableRenderer from '@/sanity/lib/CustomPortableRenderer';
+import SimilarBlogs from '@/app/blog/[slug]/SimilarBlogs';
+import NotFound from '@/app/not-found';
 
 const query = `*[_type == "post" && slug.current==$slug] {
   title,
@@ -15,7 +17,6 @@ const query = `*[_type == "post" && slug.current==$slug] {
 
 const fetchBlog = (slug: string) => {
 	const data = client.fetch(groq`${query}`, { slug });
-
 	return data;
 };
 
@@ -26,6 +27,8 @@ const SingleBlogPage = async ({
 }) => {
 	const slug = (await params).slug;
 	const blog = await fetchBlog(slug);
+
+	if (blog.length < 1) return <NotFound />;
 	const data = blog[0];
 	return (
 		<section className='pt-30 promoto-tablet:pt-36 promoto-laptop:pt-41 bg-promoto-off-white px-5 promoto-tablet:px-9 pb-20 promoto-tablet:pb-25 laptop:pb-36 font-hanken max-w-300'>
@@ -55,7 +58,7 @@ const SingleBlogPage = async ({
 							<CustomPortableRenderer value={data.body} />
 						</div>
 					</div>
-					<div>explore more</div>
+					<SimilarBlogs slug={slug} />
 				</div>
 			</div>
 		</section>

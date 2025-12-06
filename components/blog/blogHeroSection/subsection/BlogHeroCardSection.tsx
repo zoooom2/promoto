@@ -2,24 +2,13 @@
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import { HiOutlineArrowLongRight } from 'react-icons/hi2';
-import { PortableTextBlock } from 'next-sanity';
 import { useEffect, useState } from 'react';
 import { urlFor } from '@/sanity/lib/image';
 import Link from 'next/link';
 import { SanityImageSource } from '@sanity/image-url';
+import { Post } from '@/sanity/schemaTypes/sanity-schema-types';
 
-interface BlogCardType {
-	data: {
-		title: string;
-		publishedAt: string;
-		blogThumbnail: SanityImageSource;
-		author: string;
-		subtitle: string;
-		body: PortableTextBlock[];
-		slug: { current: string };
-	}[];
-}
-const BlogHeroCardSection = ({ data }: BlogCardType) => {
+const BlogHeroCardSection = ({ data }: { data: Post[] }) => {
 	const [featuredBlogIndex, setFeaturedBlogIndex] = useState(0);
 
 	useEffect(() => {
@@ -37,7 +26,7 @@ const BlogHeroCardSection = ({ data }: BlogCardType) => {
 	return (
 		<div className='flex flex-col w-full justify-center items-center gap-5 transition-all duration-2000 ease-in-out content-center'>
 			{/*bloghero dynamic*/}
-			<div className='w-full promoto-tablet:max-w-[738px] promoto-laptop:max-w-[1128px] flex flex-col promoto-tablet:flex-row items-center p-4 promoto-tablet:p-6 promoto-laptop:p-8 bg-promoto-dark overflow-clip content-center max-promoto-tablet:gap-6 rounded-[20px] relative'>
+			<div className='w-full max-promoto-tablet:max-w-150 promoto-md:max-w-[738px] promoto-laptop:max-w-[1128px] flex flex-col promoto-tablet:flex-row items-center p-4 promoto-tablet:p-6 promoto-laptop:p-8 bg-promoto-dark overflow-clip content-center max-promoto-tablet:gap-6 rounded-[20px] relative'>
 				<figure className='w-full promoto-tablet:w-[49%] flex justify-center items-center overflow-clip content-center gap-2.5 rounded-[16px] bg-white h-[350px] promoto-tablet:h-[500px] relative'>
 					{data.map(
 						(blog: { blogThumbnail: SanityImageSource }, index: number) => (
@@ -77,7 +66,7 @@ const BlogHeroCardSection = ({ data }: BlogCardType) => {
 						</Button>
 					</div>
 				</div>
-				<Button className='absolute top-2 right-2 flex justify-center py-1 px-3 bg-promoto-yellow z-1 content-center flex-nowrap gap-2 rounded-[12px] text-promoto-dark capitalize whitespace-pre font-hanken text-[16px] trcking-[-0.04em] text-center leading-[1.6]'>
+				<Button className='absolute top-2 right-2 flex justify-center py-1 px-3 bg-promoto-yellow z-1 content-center flex-nowrap gap-2 rounded-[12px] text-promoto-dark capitalize whitespace-pre font-hanken text-[16px] tracking-[-0.04em] text-center leading-[1.6] hover:bg-promoto-green hover:text-white'>
 					most popular
 				</Button>
 			</div>
